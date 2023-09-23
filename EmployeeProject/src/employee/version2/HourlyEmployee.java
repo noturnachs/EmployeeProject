@@ -1,0 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package employee.version2;
+
+/**
+ *
+ * @author User
+ */
+public class HourlyEmployee extends Employee{
+    private float totalHoursWorked;
+    private float ratePerHour;
+
+    public HourlyEmployee() {
+
+    }
+
+    public HourlyEmployee(int empID, String empName, String empDateHired, String empBirthDate) {
+        super(empID, empName, empDateHired, empBirthDate);
+    }
+
+    public HourlyEmployee(int empID, String empName, String empDateHired, String empBirthDate, int totalHoursWorked, float ratePerHour) {
+        super(empID, empName, empDateHired, empBirthDate);
+        this.totalHoursWorked = totalHoursWorked;
+        this.ratePerHour = ratePerHour;
+    }
+
+    public float getTotalHoursWorked() {
+        return totalHoursWorked;
+    }
+
+    public void setTotalHoursWorked(float totalHoursWorked) {
+        this.totalHoursWorked = totalHoursWorked;
+    }
+
+    public float getRatePerHour() {
+        return ratePerHour;
+    }
+
+    public void setRatePerHour(float ratePerHour) {
+        this.ratePerHour = ratePerHour;
+    }
+
+    public double computeSalary() {
+
+        double retVal;
+
+        if(this.totalHoursWorked > 40) {
+            retVal = (40 * this.ratePerHour) + ((this.totalHoursWorked - 40)*(this.ratePerHour + (this.ratePerHour * 0.50)));
+        }
+        else {
+            retVal = this.totalHoursWorked * this.ratePerHour;
+        }
+
+        return retVal;
+    }
+
+    public void displayInfo() {
+        System.out.println("Total Hours Worked: " + String.format("%.2f", totalHoursWorked));
+        System.out.println("Rate Per Hour: ₱" + String.format("%.2f", ratePerHour));
+        System.out.println("Salary: ₱" + String.format("%.2f", computeSalary()));
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nTotal hours worked: " + this.totalHoursWorked + "\nRate per hour: " + this.ratePerHour;
+    }
+
+}
